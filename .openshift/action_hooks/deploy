@@ -7,15 +7,21 @@ fi
 
 if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
 
+  #
+  # Compilation
+  #
+  
   PECL_HTTP="pecl_http-1.7.6"
   
   cd $OPENSHIFT_TMP_DIR
+  # Telechargement
   wget https://pecl.php.net/get/${PECL_HTTP}.tgz
   tar xvf ${PECL_HTTP}.tgz
   
   cd ${PECL_HTTP}
   phpize
   ./configure
+  # Compilation
   make
   
   # Copie du fichier
@@ -24,10 +30,7 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
   # Nettoyage
   rm -R${OPENSHIFT_TMP_DIR}${PECL_HTTP}
   rm ${OPENSHIFT_TMP_DIR}${PECL_HTTP}.tgz
-  
-  # Activation de l'extension dans le fichier openshift.ini
-  echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
-  
+    
 fi
 
 echo "Traitements Oracle Oci8"
@@ -43,6 +46,7 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
   cd ${PECL_OCI8}
   phpize
   ./configure --with-oci8=instantclient,$OPENSHIFT_ORACLE_INSTANTCLIENT_DIR
+  # Compilation
   make
   
   # Copie du fichier
@@ -52,6 +56,4 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
   rm -R ${OPENSHIFT_TMP_DIR}${PECL_OCI8}
   rm ${OPENSHIFT_TMP_DIR}${PECL_OCI8}.tgz
   
-  # Activation de l'extension dans le fichier openshift.ini
-  echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
 fi

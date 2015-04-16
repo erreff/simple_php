@@ -22,8 +22,8 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
   cp ${OPENSHIFT_TMP_DIR}${PECL_HTTP}/modules/http.so ${OPENSHIFT_REPO_DIR}add_so/http.so
   
   # Nettoyage
-  rm -R ${PECL_HTTP}
-  rm ${PECL_HTTP}.tgz
+  rm -R${OPENSHIFT_TMP_DIR}${PECL_HTTP}
+  rm ${OPENSHIFT_TMP_DIR}${PECL_HTTP}.tgz
   
   # Activation de l'extension dans le fichier openshift.ini
   echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
@@ -49,8 +49,8 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
   cp ${OPENSHIFT_TMP_DIR}${PECL_OCI8}/modules/oci8.so ${OPENSHIFT_REPO_DIR}add_so/oci8.so
   
   # Nettoyage
-  rm -R ${PECL_OCI8}
-  rm ${PECL_OCI8}.tgz
+  rm -R ${OPENSHIFT_TMP_DIR}${PECL_OCI8}
+  rm ${OPENSHIFT_TMP_DIR}${PECL_OCI8}.tgz
   
   # Activation de l'extension dans le fichier openshift.ini
   echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini

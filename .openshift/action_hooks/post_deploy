@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Activation de l'extension dans le fichier openshift.ini
+echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
+echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini

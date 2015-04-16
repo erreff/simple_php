@@ -1,11 +1,11 @@
 #!/bin/bash
 
 echo "Traitements pecl_http"
-if [ ! -d ${OPENSHIFT_REPO_DIR}php/add_so ] then
+if [ ! -d ${OPENSHIFT_REPO_DIR}php/add_so ]; then
   mkdir ${OPENSHIFT_REPO_DIR}php/add_so
 fi
 
-if [ ! -f ${OPENSHIFT_REPO_DIR}php/add_so/http.so ] then
+if [ ! -f ${OPENSHIFT_REPO_DIR}php/add_so/http.so ]; then
 
   cd $OPENSHIFT_TMP_DIR
   wget https://pecl.php.net/get/pecl_http-1.7.6.tgz

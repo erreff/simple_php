@@ -15,7 +15,7 @@
 			<TABLE id="TableInput" cellSpacing="1" cellPadding="1" width="380" border="0"  >
 				<TR>
 					<TD>Serveur MySQL (s)</TD>
-					<TD><INPUT id="inputSrv" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputSrv'];} else {echo '127.0.0.1' ;} ?>" name="inputSrv"></TD>
+					<TD><INPUT id="inputSrv" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputSrv'];} else {echo getenv('OPENSHIFT_MYSQL_DB_HOST') ;} ?>" name="inputSrv"></TD>
 				</TR>
 				<TR>
 					<TD>Port (p)</TD>
@@ -23,11 +23,11 @@
 				</TR>
 				<TR>
 					<TD>Utilisateur (u)</TD>
-					<TD><INPUT id="inputUser" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputUser'];} else {echo 'test' ;} ?>" name="inputUser"></TD>
+					<TD><INPUT id="inputUser" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputUser'];} else {echo getenv('OPENSHIFT_MYSQL_DB_USERNAME') ;} ?>" name="inputUser"></TD>
 				</TR>
 				<TR>
 					<TD>Mot de passe (pw)</TD>
-					<TD><INPUT id="inputPwd" type="password" name="inputPwd"></TD>
+					<TD><INPUT id="inputPwd" type="password" name="inputPwd" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputPwd'];} else {echo getenv('OPENSHIFT_MYSQL_DB_PASSWORD') ;} ?>" ></TD>
 				</TR>
 				<TR>
 					<TD>Méthode de connexion (m)</TD>

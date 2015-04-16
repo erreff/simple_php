@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Traitements pecl_http"
+cd $OPENSHIFT_TMP_DIR
+wget https://pecl.php.net/get/pecl_http-1.7.6.tgz
+tar xvf pecl_http-1.7.6.tgz
+cd pecl_http-1.7.6
+phpize
+./configure
+make

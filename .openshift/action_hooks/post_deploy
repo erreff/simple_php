@@ -4,9 +4,11 @@
 echo "Modification fichier openshift.ini"
 
 if [ $(grep -c '^extension=.*/http.so' ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini) -eq 0 ]; then
+  echo "; Enable http extension module" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
   echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
 fi
 if [ $(grep -c '^extension=.*/http.so' ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini) -eq 0 ]; then
+  echo "; Enable oci8 extension module" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
   echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
 fi
 

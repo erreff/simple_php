@@ -1,24 +1,29 @@
 #!/bin/bash
 
 echo "Traitements pecl_http"
-if [ ! -d ${OPENSHIFT_REPO_DIR}php/add_so ]; then
-  mkdir ${OPENSHIFT_REPO_DIR}php/add_so
+if [ ! -d ${OPENSHIFT_REPO_DIR}add_so ]; then
+  mkdir ${OPENSHIFT_REPO_DIR}add_so
 fi
 
-if [ ! -f ${OPENSHIFT_REPO_DIR}php/add_so/http.so ]; then
+if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
 
   cd $OPENSHIFT_TMP_DIR
   wget https://pecl.php.net/get/pecl_http-1.7.6.tgz
   tar xvf pecl_http-1.7.6.tgz
+  
   cd pecl_http-1.7.6
   phpize
   ./configure
   make
   
   # Copie du fichier
-  cp ${OPENSHIFT_TMP_DIR}pecl_http-1.7.6/modules/http.so ${OPENSHIFT_REPO_DIR}php/add_so/http.so
+  cp ${OPENSHIFT_TMP_DIR}pecl_http-1.7.6/modules/http.so ${OPENSHIFT_REPO_DIR}add_so/http.so
   
-  #Activation de l'extension dans le fichier openshift.ini
-  echo "extension=${OPENSHIFT_REPO_DIR}php/add_so/http.so" >> ${OPENSHIFT_REPO_DIR}php/configuration/etc/php.d/openshift.ini
+  # Nettoyage
+  rm -R rm pecl_http-1.7.6
+  rm pecl_http-1.7.6.tgz
+  
+  # Activation de l'extension dans le fichier openshift.ini
+  echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/openshift.ini
   
 fi

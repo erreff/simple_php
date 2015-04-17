@@ -1,2 +1,2 @@
 # simple_php
-simple php application
+simple php application with OpenShift

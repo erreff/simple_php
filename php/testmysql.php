@@ -30,7 +30,7 @@
 					<TD><INPUT id="inputPwd" type="password" name="inputPwd" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputPwd'];} else {echo getenv('OPENSHIFT_MYSQL_DB_PASSWORD') ;} ?>" ></TD>
 				</TR>
 				<TR>
-					<TD>Méthode de connexion (m)</TD>
+					<TD>M&eacute;thode de connexion (m)</TD>
 					<TD><SELECT id="selectMethod" style="WIDTH: 128px" name="selectMethod">
 							<OPTION <?php if (count($_POST)== 0 || $_POST['selectMethod'] == 0){echo 'selected' ;} ?> value="0">MySQL (0)</OPTION>
 							<OPTION <?php if (count($_POST)!= 0 && $_POST['selectMethod'] == 1){echo 'selected' ;} ?> value="1">MySQLi (1)</OPTION>

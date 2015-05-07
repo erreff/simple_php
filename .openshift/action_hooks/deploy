@@ -30,7 +30,12 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
   # Nettoyage
   rm -R${OPENSHIFT_TMP_DIR}${PECL_HTTP}
   rm ${OPENSHIFT_TMP_DIR}${PECL_HTTP}.tgz
-    
+  
+  
+  # Activation de l'extension http
+  echo "Creation fichier http.ini"
+  echo "; Enable http extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
+  echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
 fi
 
 echo "Traitements Oracle Oci8"
@@ -56,14 +61,11 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
   rm -R ${OPENSHIFT_TMP_DIR}${PECL_OCI8}
   rm ${OPENSHIFT_TMP_DIR}${PECL_OCI8}.tgz
   
+  # Activation de l'extension oci8
+  echo "Creation fichier oci8.ini"
+  echo "; Enable oci8 extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
+  echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
 fi
 
-# Activation de l'extension http
-echo "Creation fichier http.ini"
-echo "; Enable http extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
-echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
 
-# Activation de l'extension oci8
-echo "Creation fichier oci8.ini"
-echo "; Enable oci8 extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
-echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
+

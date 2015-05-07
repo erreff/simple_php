@@ -1,59 +1,69 @@
-# #!/bin/bash
+#!/bin/bash
 
-# echo "Traitements pecl_http"
-# if [ ! -d ${OPENSHIFT_REPO_DIR}add_so ]; then
-  # mkdir ${OPENSHIFT_REPO_DIR}add_so
-# fi
+echo "Traitements pecl_http"
+if [ ! -d ${OPENSHIFT_REPO_DIR}add_so ]; then
+  mkdir ${OPENSHIFT_REPO_DIR}add_so
+fi
 
-# if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
+if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
 
-  # #
-  # # Compilation
-  # #
+  #
+  # Compilation
+  #
   
-  # PECL_HTTP="pecl_http-1.7.6"
+  PECL_HTTP="pecl_http-1.7.6"
   
-  # cd $OPENSHIFT_TMP_DIR
-  # # Telechargement
-  # wget https://pecl.php.net/get/${PECL_HTTP}.tgz
-  # tar xvf ${PECL_HTTP}.tgz
+  cd $OPENSHIFT_TMP_DIR
+  # Telechargement
+  wget https://pecl.php.net/get/${PECL_HTTP}.tgz
+  tar xvf ${PECL_HTTP}.tgz
   
-  # cd ${PECL_HTTP}
-  # phpize
-  # ./configure
-  # # Compilation
-  # make
+  cd ${PECL_HTTP}
+  phpize
+  ./configure
+  # Compilation
+  make
   
-  # # Copie du fichier
-  # cp ${OPENSHIFT_TMP_DIR}${PECL_HTTP}/modules/http.so ${OPENSHIFT_REPO_DIR}add_so/http.so
+  # Copie du fichier
+  cp ${OPENSHIFT_TMP_DIR}${PECL_HTTP}/modules/http.so ${OPENSHIFT_REPO_DIR}add_so/http.so
   
-  # # Nettoyage
-  # rm -R${OPENSHIFT_TMP_DIR}${PECL_HTTP}
-  # rm ${OPENSHIFT_TMP_DIR}${PECL_HTTP}.tgz
+  # Nettoyage
+  rm -R${OPENSHIFT_TMP_DIR}${PECL_HTTP}
+  rm ${OPENSHIFT_TMP_DIR}${PECL_HTTP}.tgz
     
-# fi
+fi
 
-# echo "Traitements Oracle Oci8"
+echo "Traitements Oracle Oci8"
 
-# if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
+if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
 
-  # PECL_OCI8="oci8-1.4.10"
+  PECL_OCI8="oci8-1.4.10"
   
-  # cd $OPENSHIFT_TMP_DIR
-  # wget https://pecl.php.net/get/${PECL_OCI8}.tgz
-  # tar xvf ${PECL_OCI8}.tgz
+  cd $OPENSHIFT_TMP_DIR
+  wget https://pecl.php.net/get/${PECL_OCI8}.tgz
+  tar xvf ${PECL_OCI8}.tgz
   
-  # cd ${PECL_OCI8}
-  # phpize
-  # ./configure --with-oci8=instantclient,$OPENSHIFT_ORACLE_INSTANTCLIENT_DIR
-  # # Compilation
-  # make
+  cd ${PECL_OCI8}
+  phpize
+  ./configure --with-oci8=instantclient,$OPENSHIFT_ORACLE_INSTANTCLIENT_DIR
+  # Compilation
+  make
   
-  # # Copie du fichier
-  # cp ${OPENSHIFT_TMP_DIR}${PECL_OCI8}/modules/oci8.so ${OPENSHIFT_REPO_DIR}add_so/oci8.so
+  # Copie du fichier
+  cp ${OPENSHIFT_TMP_DIR}${PECL_OCI8}/modules/oci8.so ${OPENSHIFT_REPO_DIR}add_so/oci8.so
   
-  # # Nettoyage
-  # rm -R ${OPENSHIFT_TMP_DIR}${PECL_OCI8}
-  # rm ${OPENSHIFT_TMP_DIR}${PECL_OCI8}.tgz
+  # Nettoyage
+  rm -R ${OPENSHIFT_TMP_DIR}${PECL_OCI8}
+  rm ${OPENSHIFT_TMP_DIR}${PECL_OCI8}.tgz
   
-# fi
+fi
+
+# Activation de l'extension http
+echo "Creation fichier http.ini"
+echo "; Enable http extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
+echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
+
+# Activation de l'extension oci8
+echo "Creation fichier oci8.ini"
+echo "; Enable oci8 extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
+echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini

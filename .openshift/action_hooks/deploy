@@ -67,32 +67,32 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
   echo "extension=${OPENSHIFT_REPO_DIR}add_so/oci8.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/oci8.ini
 fi
 
+# Bugg with Oracle version 12.2
+# echo "Traitements Oracle PDO_Oci"
 
-echo "Traitements Oracle PDO_Oci"
+# if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so ]; then
 
-if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so ]; then
-
-  PECL_PDO_OCI="PDO_OCI-1.0"
+  # PECL_PDO_OCI="PDO_OCI-1.0"
   
-  cd $OPENSHIFT_TMP_DIR
-  wget https://pecl.php.net/get/${PECL_PDO_OCI}.tgz
-  tar xvf ${PECL_PDO_OCI}.tgz
+  # cd $OPENSHIFT_TMP_DIR
+  # wget https://pecl.php.net/get/${PECL_PDO_OCI}.tgz
+  # tar xvf ${PECL_PDO_OCI}.tgz
   
-  cd ${PECL_PDO_OCI}
-  phpize
-  ./configure --with-pdo-oci=instantclient,$OPENSHIFT_ORACLE_INSTANTCLIENT_DIR
-  # Compilation
-  make
+  # cd ${PECL_PDO_OCI}
+  # phpize
+  # ./configure --with-pdo-oci=instantclient,$OPENSHIFT_ORACLE_INSTANTCLIENT_DIR
+  # # Compilation
+  # make
   
-  # Copie du fichier
-  cp ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}/modules/pdo_oci.so ${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so
+  # # Copie du fichier
+  # cp ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}/modules/pdo_oci.so ${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so
   
-  # Nettoyage
-  rm -R ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}
-  rm ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}.tgz
+  # # Nettoyage
+  # rm -R ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}
+  # rm ${OPENSHIFT_TMP_DIR}${PECL_PDO_OCI}.tgz
   
-  # Activation de l'extension pdo_oci
-  echo "Creation fichier pdo_oci.ini"
-  echo "; Enable pdo_oci extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/pdo_oci.ini
-  echo "extension=${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/pdo_oci.ini
-fi
+  # # Activation de l'extension pdo_oci
+  # echo "Creation fichier pdo_oci.ini"
+  # echo "; Enable pdo_oci extension module" > ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/pdo_oci.ini
+  # echo "extension=${OPENSHIFT_REPO_DIR}add_so/pdo_oci.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/pdo_oci.ini
+# fi

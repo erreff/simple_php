@@ -1,6 +1,6 @@
 !/bin/bash
 
-echo "Traitements pecl_http"
+echo "Traitements pecl_http 1.7.6"
 if [ ! -d ${OPENSHIFT_REPO_DIR}add_so ]; then
   mkdir ${OPENSHIFT_REPO_DIR}add_so
 fi
@@ -38,7 +38,7 @@ if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/http.so ]; then
   # echo "extension=${OPENSHIFT_REPO_DIR}add_so/http.so" >> ${OPENSHIFT_PHP_DIR}configuration/etc/php.d/http.ini
 fi
 
-echo "Traitements Oracle Oci8"
+echo "Traitements Oracle Oci8 1.4.10"
 
 if [ ! -f ${OPENSHIFT_REPO_DIR}add_so/oci8.so ]; then
 

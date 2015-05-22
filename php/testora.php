@@ -14,7 +14,7 @@
 			<DIV style="BACKGROUND-COLOR: #ccccff">
 			<TABLE id="TableInput" cellSpacing="1" cellPadding="1" width="420" border="0"  >
 				<TR>
-					<TD>Entrée Oracle (s)</TD>
+					<TD>Entr&eacute;e Oracle (s)</TD>
 					<TD><INPUT id="inputSrv" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputSrv'];} else {echo '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=' . getenv('OPENSHIFT_ORACLE_DB_HOST') . ')(PORT=' . getenv('OPENSHIFT_ORACLE_DB_PORT') . ')))(CONNECT_DATA=(SERVICE_NAME=' . getenv('OPENSHIFT_ORACLE_DB_SERVICE') . ')))' ;} ?>" name="inputSrv"></TD>
 				</TR>
 				<TR>
@@ -30,7 +30,7 @@
 					<TD><INPUT id="inputPwd" type="password" name="inputPwd" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputPwd'];} else {echo getenv('OPENSHIFT_ORACLE_DB_PASSWORD') ;} ?>"></TD>
 				</TR>
 				<TR>
-					<TD>Méthode de connexion</TD>
+					<TD>M&eacute;thode de connexion</TD>
 					<TD>
 					<SELECT id="selectMethod" style="WIDTH: 128px" name="selectMethod">
 							<OPTION <?php if (count($_POST)== 0 || $_POST['selectMethod'] == 0){echo 'selected' ;} ?> value="0">PDO (0)</OPTION>

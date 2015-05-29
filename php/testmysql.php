@@ -19,7 +19,7 @@
 				</TR>
 				<TR>
 					<TD>Port (p)</TD>
-					<TD><INPUT id="inputPort" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputPort'];} else {echo '3306' ;} ?>" name="inputPort"></TD>
+					<TD><INPUT id="inputPort" type="text" value="<?php if (count($_POST)!= 0 ){echo $_POST['inputPort'];} else {echo getenv('OPENSHIFT_MYSQL_DB_PORT') ;} ?>" name="inputPort"></TD>
 				</TR>
 				<TR>
 					<TD>Utilisateur (u)</TD>
